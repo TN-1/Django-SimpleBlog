@@ -12,11 +12,10 @@ class Post(models.Model):
     content = models.TextField()
     published = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
+    ordering=['-created']
     def __str__(self):
         return self.title
     def get_absolute_url(self):
-        return self.slug
-    #reverse('blog.views.post', args=[self.slug])
-
-class Meta:
-    ordering=['-created']
+        return 'blog/%s' % self.slug
+        #return reverse('blog:post', kwargs={'slug':self.slug})
+        #commented return throws u'blog' is not a registered namespace
