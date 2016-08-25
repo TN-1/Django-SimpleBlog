@@ -1,25 +1,42 @@
 {% extends 'base.html' %}
-
-
 {% block title %} Blog Archive {% endblock %}
-
+{% block blogname %}{{ info.getname }}{% endblock %}
 {% block content %}
-<h1> My Blog Archive </h1>
+ <div class="container">
+    <div class="blog-header">
+        <h1 class="blog-title">Mainline</h1>
+        <p class="lead blog-description">Subtext</p>
+     </div>
+     <div class="row">
+         <div class="col-sm-8 blog-main">
 {% for post in posts %}
-<div class="post">
-<h2>
-<a href="{{post.get_absolute_url}}">
-{{post.title}}
-</a>
-</h2>
-<p>{{post.description}}</p>
-<p>
-Posted on
-<time datetime="{{post.created|date:"c"}}">
-{{post.created|date}}
-</time>
-</p>
-</div>
+             <div class="blog-post">
+                <h2 class="blog-post-title"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
+                <p>{{post.description}}</p>
+                <p class="blog-post-meta">Posted on <time datetime="{{post.created|date:"c"}}">{{post.created|date}}</time></p>
+             </div>
 {% endfor %}
-{% endblock %}
-
+        </div><!-- /.blog-main -->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>{{ info.getabout }}</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">August 2016</a></li>
+              <li><a href="#">September 2016</a></li>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+{% endblock %}        

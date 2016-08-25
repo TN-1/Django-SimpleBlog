@@ -19,3 +19,13 @@ class Post(models.Model):
         return 'blog/%s' % self.slug
         #return reverse('blog:post', kwargs={'slug':self.slug})
         #commented return throws u'blog' is not a registered namespace
+
+class BlogInfo(models.Model):
+    name = models.CharField(max_length=100)
+    about = models.TextField()
+    def __str__(self):
+        return self.name
+    def getname(self):
+        return '%s' % self.name
+    def getabout(self):
+        return '%s' % self.about
