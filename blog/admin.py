@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Post, BlogInfo
+from blog.models import Post, BlogInfo, Comment
 
 class PostAdmin(admin.ModelAdmin):
     list_display=['title','description']
@@ -11,3 +11,4 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(BlogInfo)
+admin.site.register(Comment)

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}{{post.title}}{% endblock %}
+{% block blogname %}{{ info.getname }}{% endblock %}
 
 {% block content %}
 <article>
@@ -18,5 +19,21 @@ Posted on
 </p>
 {{post.content|safe}}
 </article>
+    <hr>
+    <comments>
+    {% for c in comments %}
+        <comment>
+            <p class="username"><b>User: {{ c.username }}</b></p>
+            <p class="content">Comment: {{ c.content }}</p>
+        </comment>
+    {% endfor %}
+    <hr>
+    <SubmitComment>
+        <form method="post" class="comment_form"> {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </SubmitComment>
+    </comments>
 {% endblock %}
 

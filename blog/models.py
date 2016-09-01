@@ -20,6 +20,11 @@ class Post(models.Model):
         #return reverse('blog:post', kwargs={'slug':self.slug})
         #commented return throws u'blog' is not a registered namespace
 
+class Comment(models.Model):
+    username = models.CharField(max_length=100)
+    content = models.TextField()
+    slug = models.SlugField(max_length=100)
+
 class BlogInfo(models.Model):
     name = models.CharField(max_length=100)
     about = models.TextField()
